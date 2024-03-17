@@ -9,9 +9,6 @@ const AddTodoForm = (props) => {
     event.preventDefault();
 
     const todoTitle = event.target.title.value;
-
-    console.log(todoTitle);
-
     event.target.reset();
     onAddTodo(todoTitle);
 
