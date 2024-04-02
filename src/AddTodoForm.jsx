@@ -1,24 +1,40 @@
 import React, { useState } from 'react';
-const AddTodoForm = (props) => {
 
-  const { onAddTodo } = props;
-
+ const AddTodoForm = ({ addTodo }) => {
+  
   const [todoTitle, setTodoTitle]= useState('');
+  
 
-  const handleAddTodo = (event) => {
-    event.preventDefault();
-
-    const todoTitle = event.target.title.value;
-    event.target.reset();
-    onAddTodo(todoTitle);
+  const handleTitleChange =(event)=>{
+    const newTodoTitle = event.target.value;
+    setTodoTitle(newTodoTitle);
 
   };
 
-  return (
+  const handleAddTodo = (event) => {
+    event.preventDefault();
+    if (todoTitle.trim() !== '') {
+      const newTodo = {
+        id: Date.now(), // Genera un identificador único
+        title: todoTitle
+      };
+      addTodo(newTodo); 
+      setTodoTitle(''); 
+      
+    }
+  };
+  
+   return (
     <form onSubmit={handleAddTodo}>
     <label htmlFor="todoTitle">Title: </label>
-      <input type="text" id="todoTitle" name="title" />
-      <button type="submit">Add</button>
+      <input 
+      type="text" 
+      id="todoTitle" 
+      name="title" 
+      value={todoTitle}
+       onChange={handleTitleChange}
+      />
+      <button type="submit" >Add</button>
     </form>
   );
 }
