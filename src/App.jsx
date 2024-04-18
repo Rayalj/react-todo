@@ -11,20 +11,17 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Simular una llamada a una API o un proceso de carga de datos
         await new Promise((resolve) => setTimeout(resolve, 2000));
-        
-        // Una vez que los datos se cargan con éxito, actualizamos el estado
         setTodoList(initialState);
         setIsLoading(false);
       } catch (error) {
         console.error('Error al cargar los datos:', error);
-        setIsLoading(false); // En caso de error, también detenemos el indicador de carga
+        setIsLoading(false); 
       }
     };
 
     fetchData();
-  }, [initialState]);
+  }, []);
 
   const addTodo = (newTodo) => {
     setTodoList([...todoList, newTodo]);
@@ -46,7 +43,7 @@ function App() {
       <h1>TO DO LIST </h1>
       <AddTodoForm addTodo={addTodo} />
       <hr />
-      {isLoading ? <p>Cargando...</p> : <TodoList todoList={todoList} onRemoveTodo={removeTodo} />}
+      {isLoading ? <p>Loading...</p> : <TodoList todoList={todoList} onRemoveTodo={removeTodo} />}
     </Fragment>
   );
 }
