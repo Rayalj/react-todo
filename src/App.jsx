@@ -25,14 +25,14 @@ function App() {
         }
 
         const data = await response.json();
-        console.log(data); //  respuesta de la API de Airtable en la consola
+        console.log(data); // Observa la respuesta de la API de Airtable en la consola
 
         const todos = data.records.map(record => ({
           id: record.id,
           title: record.fields.title
         }));
 
-        console.log(todos); // todos transformados en la consola
+        console.log(todos); // Observa los todos transformados en la consola
 
         setTodoList(todos);
         setIsLoading(false);
