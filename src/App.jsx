@@ -11,20 +11,69 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        await new Promise((resolve) => setTimeout(resolve, 2000));
-        setTodoList(initialState);
+        const options = {
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${import.meta.env.VITE_AIRTABLE_API_TOKEN}`
+          }
+        };
+        const url = `https://api.airtable.com/v0/${import.meta.env.VITE_AIRTABLE_BASE_ID}/${import.meta.env.VITE_TABLE_NAME}`;
+        const response = await fetch(url, options);
+
+        if (!response.ok) {
+          throw new Error(`Error: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log(data); // Observa la respuesta de la API de Airtable en la consola
+
+        const todos = data.records.map(record => ({
+          id: record.id,
+          title: record.fields.title
+        }));
+
+        console.log(todos); // Observa los todos transformados en la consola
+
+        setTodoList(todos);
         setIsLoading(false);
       } catch (error) {
         console.error('Error al cargar los datos:', error);
-        setIsLoading(false); 
+        setIsLoading(false);
       }
     };
 
     fetchData();
-  }, []);
+  }, []); // Eliminamos todoList de la lista de dependencias
 
-  const addTodo = (newTodo) => {
-    setTodoList([...todoList, newTodo]);
+  const addTodo = async (newTodo) => {
+    try {
+      const options = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${import.meta.env.VITE_AIRTABLE_API_TOKEN}`
+        },
+        body: JSON.stringify({
+          fields: {
+            title: newTodo.title // Suponiendo que newTodo es un objeto con una propiedad 'title'
+          }
+        })
+      };
+
+      const url = `https://api.airtable.com/v0/${import.meta.env.VITE_AIRTABLE_BASE_ID}/${import.meta.env.VITE_TABLE_NAME}`;
+      const response = await fetch(url, options);
+
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status}`);
+      }
+
+      const responseData = await response.json();
+
+      // Agregar la nueva tarea a todoList
+      setTodoList([...todoList, { id: responseData.id, title: responseData.fields.title }]);
+    } catch (error) {
+      console.error('Error al agregar la tarea:', error);
+    }
   };
 
   const removeTodo = (id) => {
