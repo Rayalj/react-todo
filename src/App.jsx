@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'; // Importa BrowserRouter, Routes y Route desde react-router-dom
 import AddTodoForm from './AddTodoForm';
+import NumberGuessingGame from './NumberGuessingGame'; // Importa el nuevo componente
 import TodoList from './TodoList';
 
 function App() {
@@ -26,14 +27,11 @@ function App() {
         }
 
         const data = await response.json();
-        console.log(data); // respuesta de la API de Airtable en la consola
 
         const todos = data.records.map(record => ({
           id: record.id,
           title: record.fields.title
         }));
-
-        console.log(todos); // todos transformados en la consola
 
         setTodoList(todos);
         setIsLoading(false);
@@ -134,10 +132,9 @@ function App() {
   }, [todoList, isLoading]);
 
   return (
-    
     <Router> {/* Envuelve todo en el BrowserRouter */}
       <Fragment>
-        <h1>TO DO LIST </h1>
+        <h1>TO DO LIST</h1>
 
         {/* Routes para las diferentes rutas */}
         <Routes>
@@ -156,6 +153,11 @@ function App() {
           <Route
             path="/new" // Ruta para crear nuevas tareas
             element={<h1>Nueva lista de tareas pendientes</h1>} // Elemento para renderizar
+          />
+          {/* Agregar ruta para el juego de adivinanzas */}
+          <Route
+            path="/guess-game" // Ruta para el juego de adivinanzas
+            element={<NumberGuessingGame />} // Elemento para renderizar
           />
         </Routes>
 
