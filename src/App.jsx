@@ -1,7 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'; // Importa BrowserRouter, Routes y Route desde react-router-dom
 import AddTodoForm from './AddTodoForm';
-import NumberGuessingGame from './NumberGuessingGame'; // Importa el nuevo componente
 import TodoList from './TodoList';
 
 function App() {
@@ -153,11 +152,6 @@ function App() {
           <Route
             path="/new" // Ruta para crear nuevas tareas
             element={<h1>Nueva lista de tareas pendientes</h1>} // Elemento para renderizar
-          />
-          {/* Agregar ruta para el juego de adivinanzas */}
-          <Route
-            path="/guess-game" // Ruta para el juego de adivinanzas
-            element={<NumberGuessingGame />} // Elemento para renderizar
           />
         </Routes>
 
