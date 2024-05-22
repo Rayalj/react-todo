@@ -1,0 +1,64 @@
+/* src/TodoListItem.module.css */
+.ListItem {
+  color: #1D65A6; /* Cambia el color del texto */
+  background-color: #72A2C0; /* Fondo del elemento de la lista */
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.ListItem p {
+  margin: 0;
+  flex: 1;
+}
+
+.Descripcion {
+  font-size: 20px;
+  color: #1D65A6;
+  width: 50%;
+}
+
+.ButtonsContainer {
+  display: flex;
+  gap: 10px;
+  text-align: center;
+}
+
+.ListItem button {
+  background-color: #F2A104;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.ListItem button:hover {
+  background-color: #00743F;
+}
+
+@media (max-width: 768px) {
+  .ListItem {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .Descripcion {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .ButtonsContainer {
+    width: 100%;
+    justify-content: space-around;
+  }
+
+  .ListItem button {
+    width: 45%;
+  }
+}

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styles from './TodoListItem.module.css';
 
 const TodoListItem = ({ todo, onRemoveTodo, onUpdateTodo }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -23,7 +24,7 @@ const TodoListItem = ({ todo, onRemoveTodo, onUpdateTodo }) => {
   };
 
   return (
-    <li>
+    <li className={styles.ListItem}>
       {isEditing ? (
         <>
           <input type="text" value={newTitle} onChange={handleTitleChange} />
@@ -31,7 +32,7 @@ const TodoListItem = ({ todo, onRemoveTodo, onUpdateTodo }) => {
         </>
       ) : (
         <>
-          <span>{todo.title}</span>
+          <span className={styles.Descripcion}>{todo.title}</span>
           <button onClick={handleEditClick}>Update</button>
           <button onClick={handleRemoveClick}>Delete</button>
         </>
