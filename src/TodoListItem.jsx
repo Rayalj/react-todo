@@ -1,4 +1,7 @@
+import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
+import styles from './TodoListItem.module.css';
 
 const TodoListItem = ({ todo, onRemoveTodo, onUpdateTodo }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -19,21 +22,26 @@ const TodoListItem = ({ todo, onRemoveTodo, onUpdateTodo }) => {
   const handleUpdateClick = () => {
     onUpdateTodo(todo.id, { title: newTitle });
     setIsEditing(false);
-    
   };
 
   return (
-    <li>
+    <li className={styles.ListItem}>
       {isEditing ? (
         <>
           <input type="text" value={newTitle} onChange={handleTitleChange} />
-          <button onClick={handleUpdateClick}>Update</button>
+          <button onClick={handleUpdateClick}>
+            <FontAwesomeIcon icon={faEdit} /> Update
+          </button>
         </>
       ) : (
         <>
-          <span>{todo.title}</span>
-          <button onClick={handleEditClick}>Update</button>
-          <button onClick={handleRemoveClick}>Delete</button>
+          <span className={styles.Descripcion}>{todo.title}</span>
+          <button onClick={handleEditClick}>
+            <FontAwesomeIcon icon={faEdit} />
+          </button>
+          <button className={styles.removeTask} onClick={handleRemoveClick}>
+            <FontAwesomeIcon icon={faTrashAlt} />
+          </button>
         </>
       )}
     </li>
@@ -41,3 +49,4 @@ const TodoListItem = ({ todo, onRemoveTodo, onUpdateTodo }) => {
 }
 
 export default TodoListItem;
+
