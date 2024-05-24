@@ -14,6 +14,7 @@ const InputWithLabel = ({ children, value, onChange }) => {
       <label htmlFor="todoTitle">{children}</label>
       <input 
         type="text" 
+        placeholder='Enter a new task'
         id="todoTitle" 
         name="title" 
         value={value}

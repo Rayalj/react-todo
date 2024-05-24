@@ -1,7 +1,6 @@
-/* src/TodoListItem.module.css */
 .ListItem {
-  color: #1D65A6; /* Cambia el color del texto */
-  background-color: #72A2C0; /* Fondo del elemento de la lista */
+  color: #2cdb46;
+  background-color: #f5f7f9;
   padding: 10px;
   margin: 10px 0;
   border-radius: 4px;
@@ -18,24 +17,8 @@
 
 .Descripcion {
   font-size: 20px;
-  color: #1D65A6;
+  color: #2cdb46;
   width: 50%;
-}
-
-.ButtonsContainer {
-  display: flex;
-  gap: 10px;
-  text-align: center;
-}
-
-.ListItem button {
-  background-color: #F2A104;
-  color: #fff;
-  border: none;
-  padding: 10px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
 }
 
 .ListItem button:hover {
@@ -53,12 +36,17 @@
     margin-bottom: 10px;
   }
 
-  .ButtonsContainer {
-    width: 100%;
-    justify-content: space-around;
-  }
-
   .ListItem button {
-    width: 45%;
+    width: 10%;
+    justify-content: center;
   }
+}
+
+.removeTask {
+  background-color: #F44336;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 5px 10px;
 }

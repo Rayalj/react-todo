@@ -1,8 +1,9 @@
-// /src/AddTodoForm.jsx
-
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
+import './AddTodoForm.css'; // Asegúrate de importar el archivo CSS
 import InputWithLabel from './InputWithLabel';
-import styles from './TodoList.module.css';
+
 const AddTodoForm = ({ addTodo }) => {
   const [todoTitle, setTodoTitle] = useState('');
 
@@ -15,27 +16,23 @@ const AddTodoForm = ({ addTodo }) => {
     event.preventDefault();
     if (todoTitle.trim() !== '') {
       const newTodo = {
-        id: Date.now(), // Genera un identificador único
+        id: Date.now(),
         title: todoTitle
       };
-      addTodo(newTodo); 
-      setTodoTitle(''); 
+      addTodo(newTodo);
+      setTodoTitle('');
     }
   };
-  
-  return (
-    <div className={styles.addf}>
-    <form className={styles.addTodoForm} onSubmit={handleAddTodo}>
 
-      <InputWithLabel 
-        value={todoTitle}
-        onChange={handleTitleChange}
-      >
-        <span className={styles.title}>Title:</span>
+  return (
+    <form className="input-section" onSubmit={handleAddTodo}>
+      <InputWithLabel value={todoTitle} onChange={handleTitleChange}>
+        <span>Title:</span>
       </InputWithLabel>
-      <button type="submit" >ADD TODO</button>
+      <button type="submit" className="plus-icon">
+        <FontAwesomeIcon icon={faPlus} /> Add
+      </button>
     </form>
-    </div>
   );
 }
 

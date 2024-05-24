@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'; // Importa BrowserRouter, Routes y Route desde react-router-dom
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import AddTodoForm from './AddTodoForm';
+import "./App.css";
 import TodoList from './TodoList';
 
 function App() {
@@ -41,7 +42,7 @@ function App() {
     };
 
     fetchData();
-  }, []); // Eliminamos todoList de la lista de dependencias
+  }, []);
 
   const addTodo = async (newTodo) => {
     try {
@@ -53,7 +54,7 @@ function App() {
         },
         body: JSON.stringify({
           fields: {
-            title: newTodo.title // Suponiendo que newTodo es un objeto con una propiedad 'title'
+            title: newTodo.title
           }
         })
       };
@@ -66,8 +67,6 @@ function App() {
       }
 
       const responseData = await response.json();
-
-      // Agregar la nueva tarea a todoList
       setTodoList([...todoList, { id: responseData.id, title: responseData.fields.title }]);
     } catch (error) {
       console.error('Error al agregar la tarea:', error);
@@ -131,31 +130,28 @@ function App() {
   }, [todoList, isLoading]);
 
   return (
-    <Router> {/* Envuelve todo en el BrowserRouter */}
-      <Fragment>
-        <h1>TO DO LIST</h1>
-
-        {/* Routes para las diferentes rutas */}
-        <Routes>
-          {/* Ruta para la lista de tareas */}
-          <Route
-            path="/" // Ruta raíz
-            element={ // Elemento para renderizar
-              <Fragment>
-                <AddTodoForm addTodo={addTodo} />
-                <hr />
-                {isLoading ? <p>Loading...</p> : <TodoList todoList={todoList} onRemoveTodo={removeTodo} onUpdateTodo={updateTodo} />}
-              </Fragment>
-            }
-          />
-          {/* Nueva ruta para la creación de nuevas tareas */}
-          <Route
-            path="/new" // Ruta para crear nuevas tareas
-            element={<h1>Nueva lista de tareas pendientes</h1>} // Elemento para renderizar
-          />
-        </Routes>
-
-      </Fragment>
+    <Router>
+      <div className="app-container">
+        <Fragment>
+          <h1>TO DO LIST</h1>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Fragment>
+                  <AddTodoForm addTodo={addTodo} />
+                  <hr />
+                  {isLoading ? <p>Loading...</p> : <TodoList todoList={todoList} onRemoveTodo={removeTodo} onUpdateTodo={updateTodo} />}
+                </Fragment>
+              }
+            />
+            <Route
+              path="/new"
+              element={<h1>Nueva lista de tareas pendientes</h1>}
+            />
+          </Routes>
+        </Fragment>
+      </div>
     </Router>
   );
 }
