@@ -6,41 +6,38 @@
 /* Define application styles here */
 
 body {
-  background: linear-gradient(-45deg, #385DA6, #6C7A8C, #5A90BF, #444c4f, #385DA6);
+  background: linear-gradient(-45deg, #d0ecdb, #ffffff); /* Adjusted gradient */
   background-size: 400% 400%;
   animation: gradient 15s ease forwards;
   margin: 0;
   padding: 0;
   font-family: "Raleway", sans-serif;
+  height: 100vh; /* Full height of the viewport */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* Prevent scrolling */
 }
 
-/* Animation for gradient background */
-@keyframes gradient {
-  0% {
-    background-position: 0% 25%;
-  }
-  25% {
-    background-position: 100% 50%;
-  }
-  50% {
-    background-position: 0% 50%;
-  }
-  75% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+#root {
+  width: 600px;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* Container for the entire app */
 .app-container {
   max-width: 800px;
-  margin: 50px auto;
+  width: 100%;
+  margin: 50px 20px;
   padding: 20px;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
+  overflow-y: auto;
+  max-height: 90vh;
 }
 
 /* Main heading styles */
@@ -87,11 +84,14 @@ button:hover {
 
 .tasks-section {
   padding: 20px 0;
+  width: 100%;
 }
 
 ul {
   list-style-type: none;
   padding: 0;
+  margin: 0;
+  width: 100%;
 }
 
 li {
@@ -145,6 +145,7 @@ li button:hover {
 
 .plus-icon {
   background-color: #4CAF50;
+  margin-right: 10px;
 }
 
 .plus-icon::before,
@@ -182,15 +183,6 @@ li button:hover {
   font-family: "Raleway", sans-serif;
 }
 
-#root {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 600px;
-  max-width: 100%;
-}
-
 @media (max-width: 768px) {
   #root {
     width: 90%;
@@ -200,5 +192,16 @@ li button:hover {
 @media (max-width: 480px) {
   #root {
     width: 90%;
+  }
+
+  .input-section {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .plus-icon {
+    width: auto;
+    margin-right: 10px;
   }
 }

@@ -1,7 +1,7 @@
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faPenToSquare } from '@fortawesome/free-regular-svg-icons'; // Importamos el icono faPenToSquare
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
-import './AddTodoForm.css'; // Asegúrate de importar el archivo CSS
+import './AddTodoForm.css';
 import InputWithLabel from './InputWithLabel';
 
 const AddTodoForm = ({ addTodo }) => {
@@ -25,12 +25,15 @@ const AddTodoForm = ({ addTodo }) => {
   };
 
   return (
-    <form className="input-section" onSubmit={handleAddTodo}>
-      <InputWithLabel value={todoTitle} onChange={handleTitleChange}>
+    <form className='input-section' onSubmit={handleAddTodo}>
+      <InputWithLabel 
+        value={todoTitle}
+        onChange={handleTitleChange}
+      >
         <span>Title:</span>
       </InputWithLabel>
       <button type="submit" className="plus-icon">
-        <FontAwesomeIcon icon={faPlus} /> Add
+        <FontAwesomeIcon icon={faPenToSquare} /> {/* Cambiamos el icono a faPenToSquare */}
       </button>
     </form>
   );

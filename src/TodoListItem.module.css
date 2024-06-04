@@ -1,3 +1,5 @@
+/* TodoListItem.module.css */
+
 .ListItem {
   color: #2cdb46;
   background-color: #f5f7f9;
@@ -27,18 +29,20 @@
 
 @media (max-width: 768px) {
   .ListItem {
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
   }
 
   .Descripcion {
-    width: 100%;
-    margin-bottom: 10px;
+    width: 50%;
+    margin-bottom: 0;
   }
 
   .ListItem button {
-    width: 10%;
+    width: auto;
     justify-content: center;
+    margin-top: 0;
   }
 }
 
