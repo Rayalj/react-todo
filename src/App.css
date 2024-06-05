@@ -194,12 +194,6 @@ li button:hover {
     width: 90%;
   }
 
-  .input-section {
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-  }
-
   .plus-icon {
     width: auto;
     margin-right: 10px;
