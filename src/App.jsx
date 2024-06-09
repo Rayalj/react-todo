@@ -1,8 +1,8 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
-import AddTodoForm from './AddTodoForm';
 import "./App.css";
-import TodoList from './TodoList';
+import AddTodoForm from './components/AddTodoForm';
+import TodoList from './components/TodoList';
 
 function App() {
   const key = 'savedTodoList';
@@ -157,3 +157,4 @@ function App() {
 }
 
 export default App;
+

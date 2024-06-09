@@ -1,5 +1,6 @@
 import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import styles from './TodoListItem.module.css';
 
@@ -48,8 +49,16 @@ const TodoListItem = ({ todo, onRemoveTodo, onUpdateTodo }) => {
       )}
     </li>
   );
-}
+};
+
+TodoListItem.propTypes = {
+  todo: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+  }).isRequired,
+  onRemoveTodo: PropTypes.func.isRequired,
+  onUpdateTodo: PropTypes.func.isRequired,
+};
 
 export default TodoListItem;
-
 

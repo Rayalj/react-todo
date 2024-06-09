@@ -1,7 +1,8 @@
-import { faPenToSquare } from '@fortawesome/free-regular-svg-icons'; // Importamos el icono faPenToSquare
+import { faPenToSquare } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import PropTypes from 'prop-types';
 import React, { useState } from 'react';
-import './AddTodoForm.css';
+import './AddTodoForm.css'; // Asegúrate de que esta ruta sea correcta
 import InputWithLabel from './InputWithLabel';
 
 const AddTodoForm = ({ addTodo }) => {
@@ -33,10 +34,14 @@ const AddTodoForm = ({ addTodo }) => {
         <span>Title:</span>
       </InputWithLabel>
       <button type="submit" className="plus-icon">
-        <FontAwesomeIcon icon={faPenToSquare} /> {/* Cambiamos el icono a faPenToSquare */}
+        <FontAwesomeIcon icon={faPenToSquare} />
       </button>
     </form>
   );
-}
+};
+
+AddTodoForm.propTypes = {
+  addTodo: PropTypes.func.isRequired,
+};
 
 export default AddTodoForm;
