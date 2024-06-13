@@ -36,12 +36,14 @@ const TodoListItem = ({ todo, onRemoveTodo, onUpdateTodo }) => {
       ) : (
         <>
           <span className={styles.Descripcion}>{todo.title}</span>
-          <button onClick={handleEditClick}>
-            <FontAwesomeIcon icon={faEdit} />
-          </button>
-          <button className={styles.removeTask} onClick={handleRemoveClick}>
-            <FontAwesomeIcon icon={faTrashAlt} />
-          </button>
+          <div className={styles.buttonContainer}>
+            <button onClick={handleEditClick} className={styles.editTask}>
+              <FontAwesomeIcon icon={faEdit} />
+            </button>
+            <button className={styles.removeTask} onClick={handleRemoveClick}>
+              <FontAwesomeIcon icon={faTrashAlt} />
+            </button>
+          </div>
         </>
       )}
     </li>
@@ -49,4 +51,5 @@ const TodoListItem = ({ todo, onRemoveTodo, onUpdateTodo }) => {
 }
 
 export default TodoListItem;
+
 

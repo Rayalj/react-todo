@@ -56,4 +56,12 @@
   height: 100%; /* Cubrir completamente el botón */
 }
 
-
+@media (max-width: 400px) {
+  .input-section{
+    flex-direction: column;
+  }
+  .input-section input{
+    margin: 12px 0:
+  }
+  
+}

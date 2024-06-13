@@ -27,6 +27,11 @@
   background-color: #00743F;
 }
 
+.buttonContainer {
+  display: flex;
+  gap: 5px; /* Añade un espacio de 5px entre los botones */
+}
+
 @media (max-width: 768px) {
   .ListItem {
     flex-direction: row;
@@ -53,4 +58,23 @@
   border-radius: 4px;
   cursor: pointer;
   padding: 5px 10px;
+}
+
+.editTask {
+  background-color: #FFA500; /* Naranja suave */
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 5px 10px;
+}
+
+@media (max-width: 400px) {
+  .ListItem {
+    text-align: center;
+    flex-direction: column;
+  }
+  .buttonContainer {
+    margin: 12px 0;
+  }
 }
