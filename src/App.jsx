@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react';
+import { FaSortDown, FaSortUp } from 'react-icons/fa';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import "./App.css";
 import AddTodoForm from './components/AddTodoForm';
@@ -9,6 +10,7 @@ function App() {
   const initialState = JSON.parse(localStorage.getItem(key)) || [];
   const [todoList, setTodoList] = useState(initialState);
   const [isLoading, setIsLoading] = useState(true);
+  const [sortOrder, setSortOrder] = useState('asc'); // Estado para el orden de clasificación
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,7 +21,7 @@ function App() {
             Authorization: `Bearer ${import.meta.env.VITE_AIRTABLE_API_TOKEN}`
           }
         };
-        const url = `https://api.airtable.com/v0/${import.meta.env.VITE_AIRTABLE_BASE_ID}/${import.meta.env.VITE_TABLE_NAME}`;
+        const url = `https://api.airtable.com/v0/${import.meta.env.VITE_AIRTABLE_BASE_ID}/${import.meta.env.VITE_TABLE_NAME}?sort[0][field]=title&sort[0][direction]=${sortOrder}`;
         const response = await fetch(url, options);
 
         if (!response.ok) {
@@ -42,7 +44,11 @@ function App() {
     };
 
     fetchData();
-  }, []);
+  }, [sortOrder]);
+
+  const toggleSortOrder = () => {
+    setSortOrder(prevOrder => (prevOrder === 'asc' ? 'desc' : 'asc'));
+  };
 
   const addTodo = async (newTodo) => {
     try {
@@ -134,6 +140,9 @@ function App() {
       <div className="app-container">
         <Fragment>
           <h1>TO DO LIST</h1>
+          <button className="sort-button" onClick={toggleSortOrder} title={`Sort ${sortOrder === 'asc' ? 'Descending' : 'Ascending'}`}>
+            {sortOrder === 'asc' ? <FaSortUp size={18} color="white" /> : <FaSortDown size={18} color="white" />}
+          </button>
           <Routes>
             <Route
               path="/"
@@ -157,4 +166,3 @@ function App() {
 }
 
 export default App;
-
