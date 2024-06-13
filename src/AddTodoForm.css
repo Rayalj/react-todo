@@ -1,44 +1,59 @@
-/* AddTodoForm.css */
-
 .input-section {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px 0;
-    border-bottom: 2px solid #eaeaea;
-  }
-  
-  .input-section span {
-    margin-right: 10px;
-    font-size: 18px;
-  }
-  
-  .input-section input {
-    padding: 10px;
-    font-size: 16px;
-    border: 2px solid #eaeaea;
-    border-radius: 4px;
-    margin-right: 10px;
-    flex-grow: 1;
-  }
-  
-  .plus-icon {
-    display: flex;
-    align-items: center;
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #4CAF50;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .plus-icon .svg-inline--fa {
-    margin-right: 5px;
-  }
-  
-  .plus-icon:hover {
-    background-color: #F2A104;
-  }
-  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 0;
+  border-bottom: 2px solid #eaeaea;
+}
+
+.input-section span {
+  margin-right: 10px;
+  font-size: 18px;
+}
+
+.input-section input {
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #eaeaea;
+  border-radius: 4px;
+  margin-right: 10px;
+  flex-grow: 1;
+}
+
+.plus-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.plus-icon .svg-inline--fa {
+  margin-right: 5px;
+}
+
+.plus-icon:hover {
+  background-color: #F2A104;
+}
+
+.remove-task {
+  background-color: #F44336;
+  width: 40px; /* Ajustamos el ancho del botón */
+  height: 40px; /* Ajustamos la altura del botón */
+}
+
+.remove-task::before {
+  content: '';
+  position: absolute;
+  background-color: #fff;
+  width: 100%; /* Cubrir completamente el botón */
+  height: 100%; /* Cubrir completamente el botón */
+}
+
+
