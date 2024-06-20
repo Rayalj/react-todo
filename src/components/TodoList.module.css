@@ -1,0 +1,41 @@
+.container {
+    width: 100%;
+  }
+  
+  .todoList {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .ListItem {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+  }
+  
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .pageButton {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border: none;
+    margin: 0 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    min-width: 40px;
+  }
+  
+  .pageButton:hover {
+    background-color: #FFA500;
+  }
+  
+  .active {
+    background-color: #008CBA;
+  }
+  
