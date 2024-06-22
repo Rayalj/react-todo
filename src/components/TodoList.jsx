@@ -5,7 +5,7 @@ import TodoListItem from './TodoListItem';
 
 const TodoList = ({ todoList, onRemoveTodo, onUpdateTodo }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const todosPerPage = 10;
+  const todosPerPage = 4;
 
   // Calcula los índices de la primera y última tarea de la página actual
   const indexOfLastTodo = currentPage * todosPerPage;

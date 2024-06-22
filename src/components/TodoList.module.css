@@ -39,3 +39,35 @@
     background-color: #008CBA;
   }
   
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .pageButton {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border: none;
+    margin: 0 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    min-width: 40px;
+  }
+  
+  .pageButton:hover {
+    background-color: #FFA500;
+  }
+  
+  .pageButton[disabled] {
+    background-color: #ddd;
+    color: #777;
+    cursor: default;
+  }
+  
+  .active {
+    background-color: #008CBA;
+  }
+  
