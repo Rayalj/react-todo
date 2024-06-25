@@ -9,7 +9,9 @@ const TodoListItem = ({ todo, onRemoveTodo, onUpdateTodo }) => {
   const [newTitle, setNewTitle] = useState(todo.title);
 
   const handleRemoveClick = () => {
-    onRemoveTodo(todo.id);
+    if (window.confirm(`Are you sure you want to delete "${todo.title}"?`)) {
+      onRemoveTodo(todo.id);
+    }
   };
 
   const handleEditClick = () => {
@@ -61,4 +63,3 @@ TodoListItem.propTypes = {
 };
 
 export default TodoListItem;
-
