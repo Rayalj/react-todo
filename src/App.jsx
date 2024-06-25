@@ -3,9 +3,8 @@ import { FaSortDown, FaSortUp } from 'react-icons/fa';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import ClipLoader from 'react-spinners/ClipLoader';
 import "./App.css";
-import AddTodoForm from './components/AddTodoForm';
 import Footer from './components/Footer'; // Importa el componente Footer
-import TodoList from './components/TodoList';
+import TodoContainer from './components/TodoContainer'; // Importa TodoContainer
 
 function App() {
   const key = 'savedTodoList';
@@ -176,12 +175,15 @@ function App() {
               path="/"
               element={
                 <Fragment>
-                  <AddTodoForm addTodo={addTodo} />
-                  <hr />
                   {isLoading ? (
                     <ClipLoader size={50} color="#36ad47" />
                   ) : (
-                    <TodoList todoList={todoList} onRemoveTodo={removeTodo} onUpdateTodo={updateTodo} />
+                    <TodoContainer
+                      todoList={todoList}
+                      addTodo={addTodo}
+                      removeTodo={removeTodo}
+                      updateTodo={updateTodo}
+                    />
                   )}
                 </Fragment>
               }
