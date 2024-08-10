@@ -1,16 +1,19 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { FaSortDown, FaSortUp } from 'react-icons/fa';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import ClipLoader from 'react-spinners/ClipLoader';
 import "./App.css";
-import AddTodoForm from './components/AddTodoForm';
-import TodoList from './components/TodoList';
+import Footer from './components/Footer'; // Importa el componente Footer
+import TodoContainer from './components/TodoContainer'; // Importa TodoContainer
 
 function App() {
   const key = 'savedTodoList';
   const initialState = JSON.parse(localStorage.getItem(key)) || [];
   const [todoList, setTodoList] = useState(initialState);
   const [isLoading, setIsLoading] = useState(true);
-  const [sortOrder, setSortOrder] = useState('asc'); // Estado para el orden de clasificación
+  const [sortOrder, setSortOrder] = useState('asc');
+  const [showMessage, setShowMessage] = useState(false);
+  const [messageText, setMessageText] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -74,6 +77,7 @@ function App() {
 
       const responseData = await response.json();
       setTodoList([...todoList, { id: responseData.id, title: responseData.fields.title }]);
+      showSavedMessage('Saved');
     } catch (error) {
       console.error('Error al agregar la tarea:', error);
     }
@@ -96,6 +100,7 @@ function App() {
       }
 
       setTodoList(todoList.filter(todo => todo.id !== id));
+      showSavedMessage('Deleted');
     } catch (error) {
       console.error('Error al eliminar la tarea:', error);
     }
@@ -124,6 +129,7 @@ function App() {
       const responseData = await response.json();
 
       setTodoList(todoList.map(todo => todo.id === id ? { ...todo, title: responseData.fields.title } : todo));
+      showSavedMessage('Updated');
     } catch (error) {
       console.error('Error al actualizar la tarea:', error);
     }
@@ -135,30 +141,60 @@ function App() {
     }
   }, [todoList, isLoading]);
 
+  const showSavedMessage = (message) => {
+    setMessageText(message);
+    setShowMessage(true);
+    setTimeout(() => {
+      setShowMessage(false);
+    }, 1500); // Ocultar el mensaje después de 1.5 segundos
+  };
+
   return (
     <Router>
       <div className="app-container">
+        {showMessage && <div className="saved-message">{messageText}</div>}
         <Fragment>
           <h1>TO DO LIST</h1>
-          <button className="sort-button" onClick={toggleSortOrder} title={`Sort ${sortOrder === 'asc' ? 'Descending' : 'Ascending'}`}>
-            {sortOrder === 'asc' ? <FaSortUp size={18} color="white" /> : <FaSortDown size={18} color="white" />}
-          </button>
+          <div className="sort-button-container">
+            <button className="sort-button" onClick={toggleSortOrder} title={`${sortOrder === 'asc' ? 'Descending' : 'Ascending'}`}>
+              {sortOrder === 'asc' ? (
+                <Fragment>
+                  <FaSortUp size={18} color="white" />
+                  <span className="sort-button-text">Ascen</span>
+                </Fragment>
+              ) : (
+                <Fragment>
+                  <FaSortDown size={18} color="white" />
+                  <span className="sort-button-text">Descen</span>
+                </Fragment>
+              )}
+            </button>
+          </div>
           <Routes>
             <Route
               path="/"
               element={
                 <Fragment>
-                  <AddTodoForm addTodo={addTodo} />
-                  <hr />
-                  {isLoading ? <p>Loading...</p> : <TodoList todoList={todoList} onRemoveTodo={removeTodo} onUpdateTodo={updateTodo} />}
+                  {isLoading ? (
+                    <ClipLoader size={50} color="#36ad47" />
+                  ) : (
+                    <TodoContainer
+                      todoList={todoList}
+                      addTodo={addTodo}
+                      removeTodo={removeTodo}
+                      updateTodo={updateTodo}
+                    />
+                  )}
                 </Fragment>
               }
             />
             <Route
               path="/new"
-              element={<h1>Nueva lista de tareas pendientes</h1>}
+              element={<h1>New To Do List</h1>}
             />
           </Routes>
+          <hr/>
+          <Footer />
         </Fragment>
       </div>
     </Router>

@@ -1,0 +1,25 @@
+/* Estilos para el footer */
+.my-footer {
+    width: 100%;
+    max-width: 600px;
+    background-color:white;
+    color:black; /* Letras blancas */
+    text-align: center; /* Centrar texto */
+    padding: 10px 0; /* Espaciado interno ajustado */
+    margin-top: 10px; /* Espacio entre el container y el footer */
+  }
+  
+  @media (max-width: 768px) {
+    .my-footer {
+      width: 100%;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .my-footer {
+      width: 100%;
+      font-size: 14px; /* Ajustar el tamaño de la fuente para pantallas más pequeñas */
+      padding: 8px 0; /* Ajustar el padding para pantallas más pequeñas */
+    }
+  }
+  

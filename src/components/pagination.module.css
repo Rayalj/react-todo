@@ -1,0 +1,57 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px; /* Añadimos margen inferior para separación */
+}
+
+.pageButton {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px;
+  border: none;
+  margin: 0 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  min-width: 40px;
+}
+
+.pageButton:hover {
+  background-color: #FFA500;
+}
+
+.pageButton[disabled] {
+  background-color: #ddd;
+  color: #777;
+  cursor: default;
+}
+
+.active {
+  background-color: #008CBA;
+}
+
+.pagination .dots {
+  padding: 0 10px;
+  color: #777;
+}
+
+@media (max-width: 768px) {
+  .pagination {
+    flex-wrap: wrap; /* Permitimos que los botones se envuelvan en pantallas más pequeñas */
+  }
+
+  .pageButton {
+    font-size: 12px; /* Reducimos el tamaño de fuente para pantallas pequeñas */
+    padding: 8px; /* Reducimos el padding de los botones */
+    min-width: auto; /* Permitimos que los botones ajusten su ancho automáticamente */
+    margin: 3px; /* Ajustamos el margen entre botones */
+  }
+}
+
+@media (max-width: 480px) {
+  .pageButton {
+    font-size: 8px; /* Reducimos aún más el tamaño de fuente para pantallas muy pequeñas */
+    padding: 5px; /* Reducimos el padding aún más */
+  }
+}

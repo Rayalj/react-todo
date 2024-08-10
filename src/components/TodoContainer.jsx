@@ -1,41 +1,22 @@
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React from 'react';
 import AddTodoForm from './AddTodoForm';
 import './TodoContainer.css';
 import TodoList from './TodoList';
 
-const TodoContainer = () => {
-  const [todos, setTodos] = useState([]);
-
-  const addTodo = (newTodo) => {
-    setTodos([...todos, newTodo]);
-  };
-
-  const removeTodo = (todoId) => {
-    const filteredTodos = todos.filter(todo => todo.id !== todoId);
-    setTodos(filteredTodos);
-  };
-
-  const updateTodo = (todoId, updatedTodo) => {
-    const updatedTodos = todos.map(todo => 
-      todo.id === todoId ? { ...todo, ...updatedTodo } : todo
-    );
-    setTodos(updatedTodos);
-  };
-
+const TodoContainer = ({ todoList, addTodo, removeTodo, updateTodo }) => {
   return (
     <div className="todo-container">
-      <h1>Todo List</h1>
       <AddTodoForm addTodo={addTodo} />
-      <TodoList todos={todos} removeTodo={removeTodo} updateTodo={updateTodo} />
+      <TodoList todoList={todoList} onRemoveTodo={removeTodo} onUpdateTodo={updateTodo} />
     </div>
   );
 };
 
 TodoContainer.propTypes = {
-  todos: PropTypes.arrayOf(
+  todoList: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number.isRequired,
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
       title: PropTypes.string.isRequired,
     })
   ).isRequired,
